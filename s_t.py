@@ -9,7 +9,7 @@ import streamlit as st
 
 # Configuración básica de la app
 st.set_page_config(
-    page_title="GlobalVoice - Cabina de Inmersión y Acentos", layout="wide"
+    page_title="GlobalVoice - Cabina de Inmersión y Acentos, diviertete para hablar como un estereotipo bro", layout="wide"
 )
 
 os.makedirs("temp", exist_ok=True)
@@ -31,10 +31,10 @@ def remove_old_files(days=7):
 remove_old_files(7)
 
 # --- CABECERA E INTERFAZ ---
-st.title("🌐 GlobalVoice: Entrenador de Acentos e Inmersión")
+st.title("🌐 GlobalVoice: Entrenador de Acentos Chistosos e Inmersión")
 st.caption(
     "Traduce en tiempo real y pon a prueba tu oído escuchando cómo suena"
-    " el idioma en distintas partes del mundo."
+    " el idioma en distintas partes del mundo, bueno pa' divertirse con los amigos."
 )
 
 col_img, col_info = st.columns([1, 2])
@@ -47,11 +47,11 @@ with col_img:
         st.info("📷 Coloca la imagen 'OIG7.jpg' en la carpeta de la app.")
 
 with col_info:
-    st.subheader("💡 ¿Cómo usar esta cabina?")
+    st.subheader("💡 ¿Cómo usar esta monda'?")
     st.write("""
     1. Ingresa el texto o usa las opciones de entrada.
     2. Elige el idioma de origen y de destino.
-    3. Selecciona el acento regional que deseas practicar.
+    3. Selecciona el acento regional que deseas practicar, entre más charro mejor.
     4. Presiona **Traducir y Generar Audio**.
     """)
 
