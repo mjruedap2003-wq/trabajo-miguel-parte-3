@@ -105,7 +105,7 @@ with col_accent:
 
 display_output_text = st.checkbox("Mostrar texto traducido", value=True)
 
-if st.button("🚀 Traducir y Generar Audio", type="primary"):
+if st.button("🚀 Presiona y cagate de la risa", type="primary"):
     if not captured_text.strip():
         st.warning("Por favor ingresa un texto válido.")
     else:
