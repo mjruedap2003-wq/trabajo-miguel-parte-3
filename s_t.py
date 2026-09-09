@@ -41,7 +41,7 @@ col_img, col_info = st.columns([1, 2])
 
 with col_img:
     try:
-        image = Image.open("OIG7.jpg")
+        image = Image.open("Fun_italian_man.jpg")
         st.image(image, width=260, caption="Simulador Multimodal")
     except FileNotFoundError:
         st.info("📷 Coloca la imagen 'OIG7.jpg' en la carpeta de la app.")
