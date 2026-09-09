@@ -84,13 +84,13 @@ ACENTOS_TLD = {
 }
 
 # --- ENTRADA DE TEXTO ---
-st.subheader("1. Entrada de Texto")
+st.subheader("1. Cajita para escribir tus cosas")
 captured_text = st.text_input(
     "Escribe el texto a traducir:", value="Hola, ¿cómo estás?"
 )
 
 # --- CONFIGURACIÓN Y PROCESAMIENTO ---
-st.subheader("2. Configuración de Traducción y Acento")
+st.subheader("2. Espacio para colocar los acentos, si es Italiano va para el cielo D1")
 
 col_lang1, col_lang2, col_accent = st.columns(3)
 
