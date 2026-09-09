@@ -134,7 +134,7 @@ if st.button("🚀 Presiona y cagate de la risa", type="primary"):
 
                 # Resultado
                 st.divider()
-                st.subheader("🔊 Resultado Auditivo")
+                st.subheader("🔊 Resultado Auditivo, para deleitar incluso a sordos")
 
                 if display_output_text:
                     st.info(
