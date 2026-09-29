@@ -9,7 +9,77 @@ import streamlit as st
 
 # Configuración básica de la app
 st.set_page_config(
-    page_title="GlobalVoice - Cabina de Inmersión y Acentos, diviertete para hablar como un estereotipo bro", layout="wide"
+    page_title="GlobalVoice - Cabina de Inmersión y Acentos",
+    page_icon="🌐",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
+# Estilos CSS Personalizados para mejorar la estética
+st.markdown(
+    """
+    <style>
+    /* Fondo general e importación de fuentes */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+    
+    html, body, [class*="css"] {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Encabezado Principal */
+    .main-header {
+        background: linear-gradient(135deg, #6B73FF 0%, #000DFF 100%);
+        padding: 2.5rem;
+        border-radius: 20px;
+        color: white;
+        text-align: center;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        margin-bottom: 2rem;
+    }
+    .main-header h1 {
+        color: white !important;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    .main-header p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+    }
+
+    /* Contenedores de Sección (Cards) */
+    .custom-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Botón Estilizado */
+    .stButton > button {
+        background: linear-gradient(90deg, #FF4B4B 0%, #FF8E53 100%);
+        color: white;
+        font-weight: 600;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 12px;
+        padding: 0.75rem 2rem;
+        width: 100%;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 75, 75, 0.4);
+    }
+    .stButton > button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 75, 75, 0.6);
+    }
+
+    /* Ocultar menú por defecto y footer */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    </style>
+    """,
+    unsafe_allow_html=True,
 )
 
 os.makedirs("temp", exist_ok=True)
@@ -31,28 +101,41 @@ def remove_old_files(days=7):
 remove_old_files(7)
 
 # --- CABECERA E INTERFAZ ---
-st.title("🌐 GlobalVoice: Entrenador de Acentos Chistosos e Inmersión")
+st.markdown(
+    """
+    <div class="main-header">
+        <h1>🌐 GlobalVoice</h1>
+        <p>Entrenador de Acentos Chistosos e Inmersión</p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
 st.caption(
     "Traduce en tiempo real y pon a prueba tu oído escuchando cómo suena"
     " el idioma en distintas partes del mundo, bueno pa' divertirse con los amigos."
 )
 
-col_img, col_info = st.columns([1, 2])
+col_img, col_info = st.columns([1, 2], gap="medium")
 
 with col_img:
     try:
         image = Image.open("Fun_italian_man.jpg")
-        st.image(image, width=260, caption="Simulador Multimodal de acentos para el trabajo del profe, profe pongame 5 de una porfa")
+        st.image(
+            image,
+            use_container_width=True,
+            caption="Simulador Multimodal de acentos para el trabajo del profe, profe pongame 5 de una porfa",
+        )
     except FileNotFoundError:
         st.info("📷 Coloca la imagen 'OIG7.jpg' en la carpeta de la app.")
 
 with col_info:
     st.subheader("💡 ¿Cómo usar esta monda'?")
     st.write("""
-    1. Ingresa el texto o usa las opciones de entrada.
-    2. Elige el idioma de origen y de destino.
-    3. Selecciona el acento regional que deseas practicar, entre más charro mejor.
-    4. Presiona **Traducir y Generar Audio**.
+    1. 📝 **Ingresa el texto** o usa las opciones de entrada.
+    2. 🌍 **Elige el idioma** de origen y de destino.
+    3. 🎙️ **Selecciona el acento regional** que deseas practicar, entre más charro mejor.
+    4. 🚀 Presiona **Traducir y Generar Audio**.
     """)
 
 st.divider()
@@ -84,13 +167,15 @@ ACENTOS_TLD = {
 }
 
 # --- ENTRADA DE TEXTO ---
-st.subheader("1. Cajita para escribir tus cosas")
+st.subheader("1. 📝 Cajita para escribir tus cosas")
 captured_text = st.text_input(
     "Escribe el texto a traducir:", value="Hola, ¿cómo estás?"
 )
 
 # --- CONFIGURACIÓN Y PROCESAMIENTO ---
-st.subheader("2. Espacio para colocar los acentos, si es Italiano va para el cielo D1")
+st.subheader(
+    "2. 🎙️ Espacio para colocar los acentos, si es Italiano va para el cielo D1"
+)
 
 col_lang1, col_lang2, col_accent = st.columns(3)
 
@@ -105,6 +190,7 @@ with col_accent:
 
 display_output_text = st.checkbox("Mostrar texto traducido", value=True)
 
+st.write("")  # Espaciador
 if st.button("🚀 Presiona y cagate de la risa", type="primary"):
     if not captured_text.strip():
         st.warning("Por favor ingresa un texto válido.")
@@ -134,10 +220,12 @@ if st.button("🚀 Presiona y cagate de la risa", type="primary"):
 
                 # Resultado
                 st.divider()
-                st.subheader("🔊 Resultado Auditivo, para deleitar incluso a sordos")
+                st.subheader(
+                    "🔊 Resultado Auditivo, para deleitar incluso a sordos"
+                )
 
                 if display_output_text:
-                    st.info(
+                    st.success(
                         f"**Traducción ({out_lang_name}):** {translated_text}"
                     )
 
@@ -147,5 +235,3 @@ if st.button("🚀 Presiona y cagate de la risa", type="primary"):
 
             except Exception as e:
                 st.error(f"Error al procesar: {e}")
-
-
